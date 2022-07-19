@@ -1,0 +1,92 @@
+{% extends "rango/base.html" %}
+
+{% block title_block %}
+    Login
+{% endblock %}
+
+{% block body_block %}
+{#    <link href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css" rel="stylesheet">#}
+{#    <link href="E:\source code\Django\tango_with_django_project\templates\registration\signin.css" rel="stylesheet" type="text/css">#}
+
+    <div class="jumbotron">
+        <h1 class="display-3">Login</h1>
+    </div>
+
+    <form class="form-signin text-center" role="form" method="post" action=".">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <label for="id_username"></label>
+        <input type="text" class="form-control" id="id_username" placeholder="Username" name="username" required autofocus>
+
+        <label for="id_password"></label>
+        <input type="password" class="form-control" id="id_password" placeholder="Password" name="password" required>
+{#        {{ form.as_p }}#}
+
+
+        <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+
+        <span class="mt-5 mb-3 text-muted">
+            Not a member?
+            <a href="{% url 'registration_register' %}">Register</a>
+        </span>
+    </form>
+
+    <style>
+    body {
+      height: 100%;
+    }
+
+    body {
+      display: -ms-flexbox;
+      {#display: -webkit-box;#}
+      {#display: flex;#}
+      -ms-flex-align: center;
+      -ms-flex-pack: center;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      {#padding-top: 40px;#}
+      {#padding-bottom: 40px;#}
+      background-color: #f5f5f5;
+    }
+
+    .form-signin {
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      margin: 0 auto;
+    }
+    .form-signin .checkbox {
+      font-weight: 400;
+    }
+    .form-signin .form-control {
+      position: relative;
+      box-sizing: border-box;
+      height: auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .form-signin .form-control:focus {
+      z-index: 2;
+    }
+    .form-signin input[type="text"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    </style>
+
+{% endblock %}
+
+
+
+
+
+

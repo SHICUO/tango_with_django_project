@@ -1,0 +1,93 @@
+<!doctype html>
+{% load static %}
+{% load rango_template_tags %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    {#  #}
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="Hugo 0.98.0">   {#  #}
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">  <!--rel="icon"标题小图标-->
+    <title>
+        Rango - {% block title %}How to Tango with Django!{% endblock %}
+    </title>
+    <!-- Bootstrap core CSS --> {#  #}
+    <link href="https://getbootstrap.com/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/5.2/examples/dashboard/dashboard.css" rel="stylesheet">
+</head>
+<body>
+{#<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">#}
+    <nav class="navbar navbar-toggleable-md navbar-inverse navbar-fixed-top bg-inverse">
+        <button class="navbar-toggle navbar-toggler-right hidden-lg-up"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbar"
+                aria-controls="navbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'rango:index' %}">Rango</a>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav my-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'rango:index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'rango:about' %}">About</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'rango:restricted' %}">Restricted Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'rango:add_category' %}">Add a New Category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth_logout' %}?next=/rango/">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registration_register' %}">Register Here</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+{#</header>#}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                {% block sidebar_block %}
+                    {% get_category_list category %}
+                {% endblock %}
+            </div>
+            <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
+                {% block body_block %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script
+            src="https://getbootstrap.com/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+    <script
+            src="https://getbootstrap.com/docs/4.0/assets/js/ie10-viewport-bug-workaround.js">
+    </script>
+
+</body>
+</html>

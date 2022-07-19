@@ -1,0 +1,19 @@
+<p>
+<ul class="list-group">
+    {% if cats %}
+        {% for c in cats %}
+            {% if c == act_cat %}   {# 如果当前分类在总分类目录中，则加粗该目录字体 #}
+                <li class="list-group-item">
+                    <strong><a href="{% url 'rango:show_category' c.slug %}">{{ c.name }}</a></strong>
+                </li>
+            {% else %}
+                <li class="list-group-item">
+                    <a href="{% url 'rango:show_category' c.slug %}">{{ c.name }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <li><strong>There are no categories present.</strong></li>
+    {% endif %}
+</ul>
+</p>

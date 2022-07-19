@@ -1,0 +1,26 @@
+{% extends 'rango/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Register
+{% endblock %}
+
+{% block body_block %}
+    <h1>Register for Rango</h1>
+    {% if registered %}
+        Rango says: <strong>thank you for registering!</strong>
+        <a href="{% url 'rango:index' %}">Return to the homepage.</a><br />
+    {% else %}
+        Rango says: <strong>register here!</strong><br />
+        {# enctype,让HTTP客户端（web浏览器）分段打包和发送数据 #}
+        <form id="user_form" method="post" action="{% url 'rango:register' %}" enctype="multipart/form-data">
+            {% csrf_token %}    {# CSRF令牌 #}
+            <!-- 显示每个表单 -->
+            {{ user_form.as_p }}    {# 在段落（HTML<p>标签）中显示每个表单元素，一行显示一个表单元素 #}
+            {{ profile_form.as_p }}
+
+            <!-- 提供一个按钮，点击后提交表单 -->
+            <input type="submit" name="submit" value="Register" />
+        </form>
+    {% endif %}
+{% endblock %}
